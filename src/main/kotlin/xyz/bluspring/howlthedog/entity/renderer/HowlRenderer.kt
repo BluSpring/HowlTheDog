@@ -11,7 +11,7 @@ import xyz.bluspring.howlthedog.entity.model.HowlModel
 import xyz.bluspring.howlthedog.entity.renderer.layers.HowlCollarLayer
 import xyz.bluspring.howlthedog.entity.renderer.layers.HowlEyesLayer
 
-class HowlRenderer(context: EntityRendererProvider.Context) : MobRenderer<Wolf, HowlModel<Wolf>>(context, HowlModel(context.bakeLayer(HowlTheDogClient.HOWL_LAYER)), 0.5F) {
+class HowlRenderer(context: EntityRendererProvider.Context) : MobRenderer<Wolf, HowlModel<Wolf>>(context, HowlModel(context.bakeLayer(HowlTheDogClient.HOWL_LAYER)), 1.75F) {
     init {
         this.addLayer(HowlCollarLayer(this))
         this.addLayer(HowlEyesLayer(this))
