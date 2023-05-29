@@ -31,30 +31,34 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
         }
 
         if (wolf.isInSittingPose) {
-            model.upperBody.setPos(0.0f, 8.0f, -7.5f)
-            model.upperBody.xRot = 72 * Mth.DEG_TO_RAD
+            model.head.setPos(-1.0f, 3.0f, -13.0f)
+
+            model.upperBody.setPos(0.0f, 7.0f, -7.5f)
+            model.upperBody.xRot = -18 * Mth.DEG_TO_RAD
             model.upperBody.yRot = 0.0F
 
             this.middleBody.setPos(0.0f, 7.5f, -8.0f)
-            this.middleBody.xRot = 59 * Mth.DEG_TO_RAD
+            this.middleBody.xRot = -31 * Mth.DEG_TO_RAD
 
-            model.body.setPos(0.0f, 7.0f, 6.5f)
-            model.body.xRot = 45 * Mth.DEG_TO_RAD
+            model.body.setPos(0.0f, 14.0f, 2.5f)
+            model.body.xRot = -45 * Mth.DEG_TO_RAD
 
-            model.tail.setPos( 0.0f, 2.25f, 15.75f)
+            model.tail.setPos( 0.0f, 14.25f, 13.75f)
 
-            model.rightHindLeg.setPos(-4.5f, 7.5f, 12.5f)
+            model.rightHindLeg.setPos(-4.5f, 20.5f, 8.5f)
             model.rightHindLeg.xRot = 270F * Mth.DEG_TO_RAD
 
-            model.leftHindLeg.setPos(4.5f, 7.5f, 12.5f)
+            model.leftHindLeg.setPos(4.5f, 20.5f, 8.5f)
             model.leftHindLeg.xRot = 270 * Mth.DEG_TO_RAD
 
-            model.rightFrontLeg.xRot = 333 * Mth.DEG_TO_RAD
+            model.rightFrontLeg.xRot = -3 * Mth.DEG_TO_RAD
             model.rightFrontLeg.setPos(-5.5f, 8.0f, -13.25f)
 
-            model.leftFrontLeg.xRot = 333 * Mth.DEG_TO_RAD
+            model.leftFrontLeg.xRot = -3 * Mth.DEG_TO_RAD
             model.leftFrontLeg.setPos(5.5f, 8.0f, -13.25f)
         } else {
+            model.head.setPos(-1.0f, 6.0f, -13.0f)
+
             model.body.setPos(0.0f, 7.0f, 6.5f)
             model.body.xRot = 0F
 
@@ -81,6 +85,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
 
         model.realHead.zRot = wolf.getHeadRollAngle(h) + wolf.getBodyRollAngle(h, 0.0F)
         model.upperBody.zRot = wolf.getBodyRollAngle(h, -0.08F)
+        this.middleBody.zRot = wolf.getBodyRollAngle(h, -0.12F)
         model.body.zRot = wolf.getBodyRollAngle(h, -0.16F)
         model.realTail.yRot = wolf.getBodyRollAngle(h, -0.2F)
     }
