@@ -87,7 +87,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
         model.upperBody.zRot = wolf.getBodyRollAngle(h, -0.08F)
         this.middleBody.zRot = wolf.getBodyRollAngle(h, -0.12F)
         model.body.zRot = wolf.getBodyRollAngle(h, -0.16F)
-        model.realTail.yRot = wolf.getBodyRollAngle(h, -0.2F)
+        model.realTail.zRot = wolf.getBodyRollAngle(h, -0.2F)
     }
 
     override fun setupAnim(wolf: T, f: Float, g: Float, h: Float, i: Float, j: Float) {
