@@ -7,12 +7,59 @@ import net.minecraft.client.model.geom.builders.CubeDeformation
 import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
+import net.minecraft.util.Mth
 import net.minecraft.world.entity.animal.Wolf
+import xyz.bluspring.howlthedog.mixin.WolfModelAccessor
 
 
 class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
+    override fun prepareMobModel(wolf: T, f: Float, g: Float, h: Float) {
+        val model = this as WolfModelAccessor
+        
+        if (wolf.isAngry) {
+            model.tail.yRot = 0.0F;
+        } else {
+            model.tail.yRot = Mth.cos(f * 0.6662F) * 1.4F * g;
+        }
+
+        if (wolf.isInSittingPose) {
+            model.upperBody.setPos(-1.0F, 16.0F, -3.0F);
+            //model.upperBody.xRot = 1.2566371F;
+            model.upperBody.yRot = 0.0F;
+            model.body.setPos(0.0F, 18.0F, 0.0F);
+            //model.body.xRot = 0.7853982F;
+            model.tail.setPos(-1.0F, 21.0F, 6.0F);
+            model.rightHindLeg.setPos(-2.5F, 22.7F, 2.0F);
+            //model.rightHindLeg.xRot = 4.712389F;
+            model.leftHindLeg.setPos(0.5F, 22.7F, 2.0F);
+            //model.leftHindLeg.xRot = 4.712389F;
+            //model.rightFrontLeg.xRot = 5.811947F;
+            model.rightFrontLeg.setPos(-2.49F, 17.0F, -4.0F);
+            //model.leftFrontLeg.xRot = 5.811947F;
+            model.leftFrontLeg.setPos(0.51F, 17.0F, -4.0F);
+        } else {
+            model.body.setPos(0.0F, 14.0F, 2.0F);
+            model.body.xRot = 1.5707964F;
+            model.upperBody.setPos(-1.0F, 14.0F, -3.0F);
+            model.upperBody.xRot = model.body.xRot;
+            model.tail.setPos(-1.0F, 12.0F, 8.0F);
+            model.rightHindLeg.setPos(-2.5F, 16.0F, 7.0F);
+            model.leftHindLeg.setPos(0.5F, 16.0F, 7.0F);
+            model.rightFrontLeg.setPos(-2.5F, 16.0F, -4.0F);
+            model.leftFrontLeg.setPos(0.5F, 16.0F, -4.0F);
+            model.rightHindLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g;
+            model.leftHindLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
+            model.rightFrontLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
+            model.leftFrontLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g;
+        }
+
+        model.realHead.zRot = wolf.getHeadRollAngle(h) + wolf.getBodyRollAngle(h, 0.0F);
+        model.upperBody.zRot = wolf.getBodyRollAngle(h, -0.08F);
+        model.body.zRot = wolf.getBodyRollAngle(h, -0.16F);
+        model.realTail.zRot = wolf.getBodyRollAngle(h, -0.2F);
+    }
+
     companion object {
-        @JvmStatic
         fun createBodyLayer(): LayerDefinition {
             val meshdefinition = MeshDefinition()
             val partdefinition = meshdefinition.root
