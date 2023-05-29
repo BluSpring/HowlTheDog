@@ -8,8 +8,15 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.animal.Wolf
 import xyz.bluspring.howlthedog.client.HowlTheDogClient
 import xyz.bluspring.howlthedog.entity.model.HowlModel
+import xyz.bluspring.howlthedog.entity.renderer.layers.HowlCollarLayer
+import xyz.bluspring.howlthedog.entity.renderer.layers.HowlEyesLayer
 
 class HowlRenderer(context: EntityRendererProvider.Context) : MobRenderer<Wolf, HowlModel<Wolf>>(context, HowlModel(context.bakeLayer(HowlTheDogClient.HOWL_LAYER)), 0.5F) {
+    init {
+        this.addLayer(HowlCollarLayer(this))
+        this.addLayer(HowlEyesLayer(this))
+    }
+
     override fun getTextureLocation(entity: Wolf): ResourceLocation {
         return ResourceLocation("howlthedog", "textures/entity/howl.png")
     }
