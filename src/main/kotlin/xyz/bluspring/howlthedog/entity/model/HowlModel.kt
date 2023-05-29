@@ -95,8 +95,6 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
         val model = this as WolfModelAccessor
 
         model.tail.xRot = (90F * Mth.DEG_TO_RAD) - h
-        model.tail.yRot = 0F
-        model.tail.zRot = 0F
     }
 
     companion object {
