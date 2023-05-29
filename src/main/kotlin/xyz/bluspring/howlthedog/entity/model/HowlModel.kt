@@ -44,6 +44,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
             model.body.xRot = -45 * Mth.DEG_TO_RAD
 
             model.tail.setPos( 0.0f, 14.25f, 13.75f)
+            model.tail.zRot = 65 * Mth.DEG_TO_RAD
 
             model.rightHindLeg.setPos(-4.5f, 20.5f, 8.5f)
             model.rightHindLeg.xRot = 270F * Mth.DEG_TO_RAD
@@ -69,6 +70,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
             model.upperBody.xRot = model.body.xRot
 
             model.tail.setPos(0.0f, 2.25f, 15.75f)
+            model.tail.zRot = 0F
 
             model.rightHindLeg.setPos(-4.5f, 7.5f, 12.5f)
             model.leftHindLeg.setPos(4.5f, 7.5f, 12.5f)
