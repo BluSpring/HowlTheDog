@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "HowlTheDog",
+  "id": "howls-fucking-nightmare",
   "version": "${version}",
   "name": "HowlTheDog",
   "description": "Howl is a fucking nightmare to work on because thanks OptiFine",
@@ -11,7 +11,7 @@
     "repo": "https://github.com/BluSpring/HowlTheDog"
   },
   "license": "MIT",
-  "icon": "assets/HowlTheDog/icon.png",
+  "icon": "assets/howlthedog/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -27,6 +27,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "fabric-language-kotlin": ">=1.9.4+kotlin.1.8.21"
   }
 }
