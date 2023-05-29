@@ -13,50 +13,76 @@ import xyz.bluspring.howlthedog.mixin.WolfModelAccessor
 
 
 class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
+    private val middleBody = root.getChild("middle_body")
+
+    override fun bodyParts(): MutableIterable<ModelPart> {
+        return super.bodyParts().toMutableList().apply {
+            this.add(this@HowlModel.middleBody)
+        }
+    }
+
     override fun prepareMobModel(wolf: T, f: Float, g: Float, h: Float) {
         val model = this as WolfModelAccessor
         
         if (wolf.isAngry) {
-            model.tail.yRot = 0.0F;
+            model.tail.yRot = 0.0F
         } else {
-            model.tail.yRot = Mth.cos(f * 0.6662F) * 1.4F * g;
+            model.tail.yRot = Mth.cos(f * 0.6662F) * 1.4F * g
         }
 
         if (wolf.isInSittingPose) {
-            model.upperBody.setPos(-1.0F, 16.0F, -3.0F);
-            //model.upperBody.xRot = 1.2566371F;
-            model.upperBody.yRot = 0.0F;
-            model.body.setPos(0.0F, 18.0F, 0.0F);
-            //model.body.xRot = 0.7853982F;
-            model.tail.setPos(-1.0F, 21.0F, 6.0F);
-            model.rightHindLeg.setPos(-2.5F, 22.7F, 2.0F);
-            //model.rightHindLeg.xRot = 4.712389F;
-            model.leftHindLeg.setPos(0.5F, 22.7F, 2.0F);
-            //model.leftHindLeg.xRot = 4.712389F;
-            //model.rightFrontLeg.xRot = 5.811947F;
-            model.rightFrontLeg.setPos(-2.49F, 17.0F, -4.0F);
-            //model.leftFrontLeg.xRot = 5.811947F;
-            model.leftFrontLeg.setPos(0.51F, 17.0F, -4.0F);
+            model.upperBody.setPos(0.0f, 8.0f, -7.5f)
+            model.upperBody.xRot = 72 * Mth.DEG_TO_RAD
+            model.upperBody.yRot = 0.0F
+
+            this.middleBody.setPos(0.0f, 7.5f, -8.0f)
+            this.middleBody.xRot = 59 * Mth.DEG_TO_RAD
+
+            model.body.setPos(0.0f, 7.0f, 6.5f)
+            model.body.xRot = 45 * Mth.DEG_TO_RAD
+
+            model.tail.setPos( 0.0f, 2.25f, 15.75f)
+
+            model.rightHindLeg.setPos(-4.5f, 7.5f, 12.5f)
+            model.rightHindLeg.xRot = 270F * Mth.DEG_TO_RAD
+
+            model.leftHindLeg.setPos(4.5f, 7.5f, 12.5f)
+            model.leftHindLeg.xRot = 270 * Mth.DEG_TO_RAD
+
+            model.rightFrontLeg.xRot = 333 * Mth.DEG_TO_RAD
+            model.rightFrontLeg.setPos(-5.5f, 8.0f, -13.25f)
+
+            model.leftFrontLeg.xRot = 333 * Mth.DEG_TO_RAD
+            model.leftFrontLeg.setPos(5.5f, 8.0f, -13.25f)
         } else {
-            model.body.setPos(0.0F, 14.0F, 2.0F);
-            model.body.xRot = 1.5707964F;
-            model.upperBody.setPos(-1.0F, 14.0F, -3.0F);
-            model.upperBody.xRot = model.body.xRot;
-            model.tail.setPos(-1.0F, 12.0F, 8.0F);
-            model.rightHindLeg.setPos(-2.5F, 16.0F, 7.0F);
-            model.leftHindLeg.setPos(0.5F, 16.0F, 7.0F);
-            model.rightFrontLeg.setPos(-2.5F, 16.0F, -4.0F);
-            model.leftFrontLeg.setPos(0.5F, 16.0F, -4.0F);
-            model.rightHindLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g;
-            model.leftHindLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
-            model.rightFrontLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
-            model.leftFrontLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g;
+            model.body.setPos(0.0f, 7.0f, 6.5f)
+            model.body.xRot = 0F
+
+            this.middleBody.setPos(0.0f, 7.5f, -8.0f)
+            this.middleBody.xRot = model.body.xRot
+
+            model.upperBody.setPos(0.0f, 8.0f, -7.5f)
+            model.upperBody.xRot = model.body.xRot
+
+            model.tail.setPos(0.0f, 2.25f, 15.75f)
+
+            model.rightHindLeg.setPos(-4.5f, 7.5f, 12.5f)
+            model.leftHindLeg.setPos(4.5f, 7.5f, 12.5f)
+
+            model.rightFrontLeg.setPos(-5.5f, 8.0f, -13.25f)
+            model.leftFrontLeg.setPos(5.5f, 8.0f, -13.25f)
+
+            model.rightHindLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g
+            model.leftHindLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g
+
+            model.rightFrontLeg.xRot = Mth.cos(f * 0.6662F + 3.1415927F) * 1.4F * g
+            model.leftFrontLeg.xRot = Mth.cos(f * 0.6662F) * 1.4F * g
         }
 
-        model.realHead.zRot = wolf.getHeadRollAngle(h) + wolf.getBodyRollAngle(h, 0.0F);
-        model.upperBody.zRot = wolf.getBodyRollAngle(h, -0.08F);
-        model.body.zRot = wolf.getBodyRollAngle(h, -0.16F);
-        model.realTail.zRot = wolf.getBodyRollAngle(h, -0.2F);
+        model.realHead.zRot = wolf.getHeadRollAngle(h) + wolf.getBodyRollAngle(h, 0.0F)
+        model.upperBody.zRot = wolf.getBodyRollAngle(h, -0.08F)
+        model.body.zRot = wolf.getBodyRollAngle(h, -0.16F)
+        model.realTail.yRot = wolf.getBodyRollAngle(h, -0.2F)
     }
 
     companion object {
