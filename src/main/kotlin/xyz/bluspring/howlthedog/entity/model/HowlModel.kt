@@ -90,6 +90,15 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
         model.realTail.yRot = wolf.getBodyRollAngle(h, -0.2F)
     }
 
+    override fun setupAnim(wolf: T, f: Float, g: Float, h: Float, i: Float, j: Float) {
+        super.setupAnim(wolf, f, g, h, i, j)
+        val model = this as WolfModelAccessor
+
+        model.tail.xRot = 90F * Mth.DEG_TO_RAD
+        model.tail.yRot = 0F
+        model.tail.zRot = 0F
+    }
+
     companion object {
         fun createBodyLayer(): LayerDefinition {
             val meshdefinition = MeshDefinition()
@@ -188,7 +197,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
             val cube_r9 = head.addOrReplaceChild(
                 "cube_r9",
                 CubeListBuilder.create().texOffs(60, 70)
-                    .addBox(-6.0f, -9.0f, -6.0f, 10.0f, 8.0f, 12.0f, CubeDeformation(0.0f)),
+                    .addBox(-5.0f, -9.0f, -6.0f, 10.0f, 8.0f, 12.0f, CubeDeformation(0.0f)),
                 PartPose.offsetAndRotation(1.0f, 3.5f, -8.5f, -0.8029f, 0.0f, 0.0f)
             )
 
