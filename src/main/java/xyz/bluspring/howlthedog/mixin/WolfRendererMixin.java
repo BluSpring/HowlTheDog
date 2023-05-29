@@ -17,6 +17,13 @@ import xyz.bluspring.howlthedog.entity.renderer.HowlRenderer;
 public class WolfRendererMixin {
     private HowlRenderer howlRenderer;
 
+    @Inject(method = "getBob(Lnet/minecraft/world/entity/animal/Wolf;F)F", at = @At("HEAD"), cancellable = true)
+    public void deferBob(Wolf wolf, float f, CallbackInfoReturnable<Float> cir) {
+        if (wolf.hasCustomName() && wolf.getCustomName().getString().equalsIgnoreCase("howl")) {
+            cir.setReturnValue(wolf.getTailAngle());
+        }
+    }
+
     @Inject(method = "<init>", at = @At("TAIL"))
     public void addDeferredRenderer(EntityRendererProvider.Context context, CallbackInfo ci) {
         this.howlRenderer = new HowlRenderer(context);

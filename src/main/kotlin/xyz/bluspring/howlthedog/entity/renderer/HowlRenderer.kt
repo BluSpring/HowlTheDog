@@ -21,6 +21,10 @@ class HowlRenderer(context: EntityRendererProvider.Context) : MobRenderer<Wolf, 
         return ResourceLocation("howlthedog", "textures/entity/howl.png")
     }
 
+    override fun getBob(wolf: Wolf, f: Float): Float {
+        return wolf.tailAngle
+    }
+
     override fun render(wolf: Wolf, f: Float, g: Float, poseStack: PoseStack, multiBufferSource: MultiBufferSource, i: Int) {
         if (wolf.isWet) {
             val h = wolf.getWetShade(g)

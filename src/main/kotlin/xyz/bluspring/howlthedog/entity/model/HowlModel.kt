@@ -94,7 +94,7 @@ class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {
         super.setupAnim(wolf, f, g, h, i, j)
         val model = this as WolfModelAccessor
 
-        model.tail.xRot = 90F * Mth.DEG_TO_RAD
+        model.tail.xRot = (90F * Mth.DEG_TO_RAD) + h
         model.tail.yRot = 0F
         model.tail.zRot = 0F
     }
